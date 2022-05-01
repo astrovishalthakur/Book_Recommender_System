@@ -32,7 +32,7 @@ def get_recommendations(name, no_of_recommendations=5):
     return list(book_pivot.iloc[suggestions[0][1:]].index)
 
 
-def fetch_books_data(name):
+def recommendations_posters(name):
     book_list = get_recommendations(name, 5)
     cover_list = []
     for book in book_list:
@@ -42,15 +42,24 @@ def fetch_books_data(name):
     return cover_list
 
 
+st.set_page_config(
+     page_title="Book-Recommender-System",
+     page_icon="📚",
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
 st.title("Book Recommender System")
 
 option = st.selectbox(
     'Please Select a Book',
     movies_list_)
 
+st.image(fetch_cover(get_isbn(option)))
+
 
 if st.button("Recommend"):
-    names, posters = get_recommendations(option, 5), fetch_books_data(option)
+    names, posters = get_recommendations(option, 5), recommendations_posters(option)
     col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
