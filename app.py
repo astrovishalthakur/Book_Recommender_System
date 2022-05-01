@@ -3,13 +3,13 @@ import pickle
 import pandas as pd
 import numpy as np
 
-movies_list_ = pickle.load(open("movie_list.pkl", "rb"))
-model = pickle.load(open("model.pkl", "rb"))
-book_pivot = pickle.load(open("book_pivot.pkl", "rb"))
+movies_list_ = pickle.load(open("pickle_obj/movie_list.pkl", "rb"))
+model = pickle.load(open("pickle_obj/model.pkl", "rb"))
+book_pivot = pickle.load(open("pickle_obj/book_pivot.pkl", "rb"))
 
 
 def get_isbn(name):
-    final_rating = pd.read_csv("final_data.csv")
+    final_rating = pd.read_csv("data/final_data.csv")
     isbn = final_rating.loc[
         final_rating['title'] == name].iloc[
         0].ISBN
